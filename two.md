@@ -8,7 +8,7 @@
 repeated_numbers = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
 ```
 
-2. Crear otro iterable con valores únicos
+2. Crear otra lista con valores únicos
 3. Ordenar los valores de manera ascendente y descendente
 4. En el mismo bucle crear dos listas, una solo con los valores pares y otra con los impares
 5. Crear una lista resultante con los valores de repeated_numbers al cuadrado
