@@ -147,3 +147,16 @@ a = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
 
 sumatoria_4_10_list = sum([num for num in a[4:10]])
 
+
+base = [[1],[1,1]]
+
+limit = 10
+for _ in range(0, limit + 1):
+    last = base[-1]
+    next_list = [1]
+    for i, num in enumerate(last):
+        if i > 0:
+            next_list.append(base[i] + base[i + 1])
+        
+
+
