@@ -18,4 +18,4 @@ repeated_numbers = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
 
 ### Fibonacci
 
-9. Crea 15 números de la secuenca Fibonacci (1,1,2,3,5,8...)
+9. Crea 15 números de la secuenca **Fibonacci** (1,1,2,3,5,8...)
