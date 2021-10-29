@@ -69,15 +69,11 @@ while i < len(a):
 #         count += 1
 # print(count)
 
-# repeated_numbers = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
+repeated_numbers = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
 # result = set(repeated_numbers)
 # print(result)
 
-a = [5,41,3,1,3,2]
-b = (4,2,3,1)
-b_ordenada = sorted(b)
-print(type(b_ordenada))
-print("B ORIGINAL: ", b)
+
 
 # for num in repeated_numbers:
 #     if repeated_numbers.count(num) == 1:
@@ -88,6 +84,66 @@ print("B ORIGINAL: ", b)
 
 # print(result)
 
+# b = (4,2,3,1)
+# b_ordenada = sorted(b)
+# print(type(b_ordenada))
+# print("B ORIGINAL: ", b)
 
 
+
+
+# Ejericio 5:
+a = [5,41,3,1,3,2]
+
+# [ __(1) for __(2) in __(3) ] 1 == 2 y 3 es de dónde sacamos 1 y 2
+#
+# squares = [num ** 2 for num in a]
+# print(squares)
+
+# for num in a:
+#     squares.append(num ** 2)
+
+# Ejercicio 6:
+# 
+# mean = sum(a)/len(a)
+
+# Sumatoria de los números de lista A al cuadrado
+# sorted([num ** 2 for num in a])
+# print(sum([num ** 2 for num in a]))
+
+# Ejercicio 7:
+
+# a[a.index(max(a))] = 1000
+# print(a)
+
+## Conseguir max sin función max:
+
+# max_num = 0
+
+# for num in a:
+#     if num > max_num:
+#         max_num = num
+
+# a[a.index(max_num)] = 1000
+
+# a[a.index(sorted(a)[-1])] = 1000
+# print(a)
+
+
+a = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
+
+# sumatoria_4_10_num = 0
+# sumatoria_4_10_list = []
+
+# for i, num in enumerate(a):
+#     if i >= 4 and i<=10:
+#         sumatoria_4_10_num += num
+#         sumatoria_4_10_list.append(num)
+
+# print(sumatoria_4_10_num == sum(sumatoria_4_10_list))
+
+# sumatoria_4_10_list = sum([num for i, num in enumerate(a) if i >= 4 and i<=10])
+# print(sumatoria_4_10_list)
+
+sumatoria_4_10_list = sum([num for num in a[4:10]])
 
