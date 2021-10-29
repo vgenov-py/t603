@@ -69,9 +69,15 @@ while i < len(a):
 #         count += 1
 # print(count)
 
-repeated_numbers = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
-result = set(repeated_numbers)
-print(result)
+# repeated_numbers = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
+# result = set(repeated_numbers)
+# print(result)
+
+a = [5,41,3,1,3,2]
+b = (4,2,3,1)
+b_ordenada = sorted(b)
+print(type(b_ordenada))
+print("B ORIGINAL: ", b)
 
 # for num in repeated_numbers:
 #     if repeated_numbers.count(num) == 1:
