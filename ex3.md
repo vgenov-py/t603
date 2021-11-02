@@ -7,65 +7,65 @@ m_course = [{
   "score": 8.1
 },
 {
-	"name": "Nicole"
+	"name": "Nicole",
 	"id" :  "002",
   "score": 6.6
 },
 {
-	"name": "Javier"
+	"name": "Javier",
 	"id" :  "003",
   "score": 10
 },
 {
 	"name": "Verónica",
-	"id" :  "004".
+	"id" :  "004",
   "score": 8.6
 },
 {
-	"name": "Guillermo"
+	"name": "Guillermo",
 	"id" :  "005",
   "score": 4
 },
 {
-	"name": "Pablo"
+	"name": "Pablo",
 	"id" :  "006",
   "score": 9
 },
 {
-	"name": "Patricia"
+	"name": "Patricia",
 	"id" :  "007",
   "score": 2.3
-},
+}
 ]
 
 a_course =[
 {
-	"name": "Germán"
+	"name": "Germán",
 	"id" :  "001",
   "score": 6.8
 },
 {
-	"name": "Sara"
+	"name": "Sara",
 	"id" :  "002",
   "score": 8.8
 },
 {
-	"name": "Jorge"
+	"name": "Jorge",
 	"id" :  "003",
   "score": 3.3
 },
 {
-	"name": "María"
+	"name": "María",
 	"id" :  "004",
   "score": 9.8
 },
 {
-	"name": "Alicia"
+	"name": "Alicia",
 	"id" :  "005",
   "score": 5.6
 },
 {
-	"name": "Hernesto"
+	"name": "Hernesto",
 	"id" :  "006",
   "score": 6.8
 }]
