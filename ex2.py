@@ -148,15 +148,43 @@ a = [1,2,2,10,11,13,2,8,9,16,26,50,51,56,89,150,2,3,6,7,67,98]
 sumatoria_4_10_list = sum([num for num in a[4:10]])
 
 
-base = [[1],[1,1]]
-
-limit = 10
-for _ in range(0, limit + 1):
-    last = base[-1]
-    next_list = [1]
-    for i, num in enumerate(last):
-        if i > 0:
-            next_list.append(base[i] + base[i + 1])
-        
 
 
+result = [1,1]
+limit = 15
+
+for _ in range(0, limit):
+    result.append(result[-2] + result[-1])
+
+
+dog_1 = ["Kuga", 8, "Chucho", False]
+dog_2 = ["Max", 9, "Doberman", True]
+dog_3 = ["Terrier", 10, "Caniche", True, True, "m"]
+
+print(dog_2[2])
+
+dog_1 = {
+    "name": "Kuga",
+    "age": 8,
+    "breed": "Chucho",
+    "chip" : False,
+}
+
+dog_2 = {
+    "name": "Max",
+    "age": 9,
+    "breed": "Doberman",
+    "chip" : True,
+    "history" : [
+        {
+            "date": "2020/10/10",
+            "total": 150,
+            "observation": True,
+            "meds": ["med_1", "med_2"]
+        }
+    ]
+}
+
+#type: dict|  list   |dict | list | str
+
+print((dog_2["history"][0]  ["meds"][0]).upper())
