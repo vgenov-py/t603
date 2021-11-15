@@ -100,4 +100,78 @@ student_to_find = "HernEstO"
 
 for student in a_course:
     if student["name"].lower() == student_to_find.lower():
-        print(student["score"])
+        pass
+        # print(student["score"])
+
+count = 0
+for student in (m_course + a_course):
+    #  dict   | str   |   str |     bool    |
+    if student["name"].lower().startswith("p"):
+        count += 1
+
+# print(f"Hay {count} estudiantes que empiezan con la letra P")
+
+count = len([student for student in (m_course + a_course) if student["name"].lower().startswith("p")])
+# print(count)
+
+courses = m_course + a_course
+# print("L118",m_course[-1])
+
+highest_score = 0
+student_highest= None
+
+for student in courses:
+    if student["score"] > highest_score:
+        highest_score = student["score"]
+        student_highest = student
+
+
+# print(student_highest)
+
+
+
+
+# print("L134",courses[-1])
+
+for student in a_course:
+    if student["name"].lower() == "alicia":
+        student["score"] = 6.7
+
+for student in m_course:
+    student["id"] = "M" + student["id"]
+
+for student in a_course:
+    student["id"] = "A" + student["id"]
+
+# print("L145",courses[-1])
+
+
+# print(m_course[-2])
+# print(a_course[-2])
+
+suspended = []
+approved = []
+
+for student in courses:
+    if student["score"] >= 6:
+        approved.append(student)
+    else:
+        suspended.append(student)
+
+user = input("ID: ")
+
+student_i = None
+for i, student in enumerate(courses):
+    if student["id"] == user:
+        for k, v in student.items():
+            student_i = i
+            student[k] = input(f"Current: {v} - New {k}: ")
+        print(student)
+
+
+print(courses[student_i])
+
+
+# print([student["id"] for student in suspended])
+# print([student["id"] for student in approved])
+
