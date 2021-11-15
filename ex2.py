@@ -1,3 +1,4 @@
+
 a = [2,2,3,4]
 
 '''
@@ -187,4 +188,7 @@ dog_2 = {
 
 #type: dict|  list   |dict | list | str
 
-print((dog_2["history"][0]  ["meds"][0]).upper())
+
+
+
+
