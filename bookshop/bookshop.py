@@ -1,68 +1,6 @@
-DB = [{ # Esto ha sido blah nano
-    "id": "cf_1",
-    "title": "El hombre bicentenario",
-    "author": "Isaac Asimov",
-    "genre": "Ciencia ficción"
-},
-{
-    "id": "ne_1",
-    "title": "Lobo de mar",
-    "author": "Jack London",
-    "genre": "Narrativa extranjera"
-},
-{
-    "id": "np_1",
-    "title": "El legado de los huesos",
-    "author": "Dolores Redondo",
-    "genre": "Narrativa policíaca"
-},
-{
-    "id": "dc_1",
-    "title": "El error de Descartes",
-    "author": "Antonio Damasio",
-    "genre": "Divulgación científica"
-},
-{
-    "id": "dc_2",
-    "title": "El ingenio de los pájaros",
-    "author": "Jennifer Ackerman",
-    "genre": "Divulgación científica"
-},
-{
-    "id": "ne_4",
-    "title": "El corazón de las tinieblas",
-    "author": "Joseph Conrad",
-    "genre": "Narrativa extranjera"
-},
-{
-    "id": "dc_5",
-    "title": "Metro 2033",
-    "author": "Dmitri Glujovski",
-    "genre": "Divulgación científica"
-},
-{
-    "id": "dc_6",
-    "title": "Sidharta",
-    "author": "Hermann Hesse",
-    "genre": "Narrativa extranjera"
-},
-{
-    "id": "el_1",
-    "title": "Andres Trapiello",
-    "author": "Las armas y las letras",
-    "genre": "Narrativa extranjera"
-},
-{
-    "id": "aa_1",
-    "title": "El poder del ahora",
-    "author": "Ekhart Tolle",
-    "genre": "Narrativa extranjera"
-},
-]
+import csv
 
-def export_csv(file_name):
-    pass
-    pass
+DB = []
 
 genres = ["Narrativa extranjera", "Divulgación científica", "Narrativa policíaca", "Ciencia ficción", "Autoayuda"]
 
@@ -103,6 +41,27 @@ def update_book(book):
         if user:
             book[k] = user
 
+def read_csv(dataset, file_name):
+    with open(file_name, mode="r", encoding="utf8") as file:
+        csv_reader = csv.reader(file, delimiter=";")
+        next(csv_reader)
+        for row in csv_reader:
+            new_dict = {
+                "id": row[0],
+                "author": row[1],
+                "title": row[2],
+                "genre": row[3]
+            }
+            DB.append(new_dict)
+
+read_csv(DB, "books.csv")
 
 
+
+def export_csv(dataset, file_name):
+    with open(file_name, mode="w", encoding="utf8") as file:
+        csv_writer = csv.writer(file, delimiter=";")
+        csv_writer.writerow(["id", "author", "title", "genre"])
+        for entry in dataset:
+            csv_writer.writerow(entry.values())
 

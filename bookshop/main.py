@@ -34,3 +34,10 @@ while user != "q":
         if book_to_update:
             update_book(book_to_update)
         print(DB)
+    
+    elif user == "q":
+        user = input("Desea guardar los datos (Y/N): ")
+        if user.lower() == "y":
+            export_csv(DB, "books.csv")
+
+        user = "q"

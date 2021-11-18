@@ -1,0 +1,24 @@
+{
+    "students" : [
+        {
+            "name":"Vito",
+            "age": 10,
+            "is_adult": false,
+            "pays": null
+        },
+        {
+            "name":"Marcelo",
+            "age": 20,
+            "is_adult": true,
+            "pays": null
+        }
+    ],
+    "teachers" : [
+        {
+            "name": "Pedro",
+            "age": 25,
+            "is_adult": true,
+            "pays": null
+        }
+    ]
+}

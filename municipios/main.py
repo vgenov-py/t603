@@ -49,14 +49,31 @@ def get_biggest_mun_2(dataset):
     for mun in dataset[1:]:
         if float(mun[-2]) == max_sup:
             return mun
+
+def benford(dataset):
+    densities = [mun[-2] for mun in dataset[1:]]
+    result = {}
+    for num in range(1,10):
+        result[str(num)] = 0
+    print(result)
+    for density in densities:
+        result[density[0]] += 1/len(densities)
+    
+    for k,v in result.items():
+        print(f"{k}: {v}")
         
 with open("./data.csv", mode="r", encoding="utf8") as file:
     data = list(csv.reader(file,delimiter=";"))
+
 # sup total:
 # print(get_sup_total_3(data))
 
 # biggest mun:
 # print(get_biggest_mun_2(data))
+
+# print(benford(data))
+
+
 
 
 
