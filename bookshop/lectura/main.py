@@ -10,8 +10,8 @@
 
 # fichero.close()
 
-with open("./test.txt", mode="r") as file:
+with open("./test.txt", mode="a+") as file:
     a = file.read()
     print(a)
-    # for i in range(1,11):
-    #     file.write(f"{i}\n")
+    for i in range(1,11):
+        file.write(f"{i}\n")
