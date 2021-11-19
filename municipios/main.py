@@ -1,19 +1,20 @@
 import requests as req
 import csv
+import json
 
-# url = "https://datos.comunidad.madrid/catalogo/dataset/032474a0-bf11-4465-bb92-392052962866/resource/ee750429-1e05-411a-b026-a57ea452a34a/download/municipio_comunidad_madrid.csv"
-# res = req.get(url).content
-# res = res.decode("utf8", errors="replace") # NOS DEVUELVE UNA STRING
+# url = "https://datos.comunidad.madrid/catalogo/dataset/032474a0-bf11-4465-bb92-392052962866/resource/301aed82-339b-4005-ab20-06db41ee7017/download/municipio_comunidad_madrid.json"
+# res = req.get(url).json()
+# # res = res.decode("utf8", errors="replace") # NOS DEVUELVE UNA STRING
 
-# with open("data.csv", mode="w", encoding="utf8") as file:  # Escritura del fichero descargado
-#     file.write(res)
+# with open("data_de_internet.json", mode="w", encoding="utf8") as file:  # Escritura del fichero descargado
+#     json.dump(res, file, indent=4, ensure_ascii=False)
 
-def get_by_ine(dataset, ine_code):
-    result = None
-    for mun in dataset[1:]:
-        if mun[2] == ine_code:
-            result = mun
-    return result
+# def get_by_ine(dataset, ine_code):
+#     result = None
+#     for mun in dataset[1:]:
+#         if mun[2] == ine_code:
+#             result = mun
+#     return result
 
 
 # 3. Obtener superficie total:
@@ -65,6 +66,33 @@ def benford(dataset):
 with open("./data.csv", mode="r", encoding="utf8") as file:
     data = list(csv.reader(file,delimiter=";"))
 
+
+def to_json(dataset):
+# municipio_codigo;municipio_nombre;municipio_codigo_ine;nuts4_codigo;nuts4_nombre;superficie_km2;densidad_por_km2
+    result = {"muns":[]}
+    dict_keys = dataset[0]
+    for mun in dataset[1:]:
+        pre_dict = {}
+        for i, key in enumerate(dict_keys):
+            if i == 5 or i == 6:
+                pre_dict[key] = float(mun[i])
+            else:
+                pre_dict[key] = mun[i]
+        result["muns"].append(pre_dict)
+    return result
+
+
+
+with open("muns.json", mode="w", encoding="utf8") as file:
+    data_json =  to_json(data)
+    json.dump(data_json, file, indent=4, ensure_ascii=False)
+
+
+
+
+
+
+
 # sup total:
 # print(get_sup_total_3(data))
 
@@ -73,10 +101,7 @@ with open("./data.csv", mode="r", encoding="utf8") as file:
 
 # print(benford(data))
 
-
-
-
-
+# 8:
 
 
 
