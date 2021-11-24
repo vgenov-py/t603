@@ -1,4 +1,3 @@
-from os import write
 import requests as req
 import json
 
@@ -41,31 +40,42 @@ def pretty_print(forecast):
 
 
 # date=2014/10/10
-def forecast(location, **kwargs):
-    if kwargs.get("coordinates"): 
-        woeid = req.get(f"https://www.metaweather.com/api/location/search/?lattlong={location}").json()[0]["woeid"]
-        forecast = req.get(f"https://www.metaweather.com/api/location/{woeid}/").json()["consolidated_weather"][0]
-    else:
-        woeid = woeids.get(location.lower())
-        if not woeid:
-            print("We didn't find woeid!")
-            try:
-                woeid = req.get(f"https://www.metaweather.com/api/location/search/?query={location}").json()[0]["woeid"]
-            except IndexError:
-                return None
-            woeids[location] = woeid
-            write_data(woeids, "woeids.json")
-        forecast = req.get(f"https://www.metaweather.com/api/location/{woeid}/").json()["consolidated_weather"][0]
-    forecast = {
-        "desc": forecast["weather_state_name"],
-        "max_temp": forecast["max_temp"],
-        "min_temp": forecast["min_temp"],
-        "st": forecast["the_temp"],
-        "humidity": forecast["humidity"],
-        "wind_speed_direction": f"{forecast['wind_speed']} | {forecast['wind_direction_compass']}" 
-    }
-    return forecast
 
+def get_woeid(location,**kwargs):
+    term = "query"
+    woeid = woeids.get(location.lower())
+    if not woeid:
+        if kwargs.get("coords"):
+            term = "lattlong"
+
+        url = f"https://www.metaweather.com/api/location/search/?{term}={location}"
+        woeid = req.get(url).json()
+        if len(woeid) >= 1:
+            for loc in woeid:
+                woeids[loc["title"].lower()] = loc["woeid"]
+            woeid = woeid[0]["woeid"]
+            write_data(woeids, "woeids.json")
+        else:
+            return None
+    return woeid
+
+# print(get_woeid("40,1", coords=True))
+
+def get_forecast(location, **kwargs):
+    woeid = get_woeid(location, **kwargs)
+    if woeid:
+        url = f"https://www.metaweather.com/api/location/{woeid}/"
+        date = kwargs.get("date")
+        if date:
+            url += date
+        forecast = req.get(url).json()
+        if type(forecast) == list: 
+            if not len(forecast):
+                return None
+        return forecast
+    else:
+        return None
+print(get_forecast("10,11", coords=True, date="2021/10/10"))
 def forecast_v_2(location, **kwargs): # ciudad/coords - date on - date off
     term = "query"
     woeid = woeids.get(location.lower())
@@ -109,14 +119,15 @@ def forecast_v_2(location, **kwargs): # ciudad/coords - date on - date off
 
     return forecast
 
-        
+def calculate_trip(A, B):
+    pass    
+            
+ 
+
 
 # forecast_v_2("kirkwall", date="2020/10/10")
 
-
-
-
-user = "0"
+user = "q"
 while user != "q":
     menu()
     user = input("Opción: ")
@@ -135,4 +146,5 @@ while user != "q":
         print(f"La sensación térmica:")
         pretty_print(forecast_search)
         input("...")
+
 
