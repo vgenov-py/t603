@@ -2,6 +2,9 @@ import json
 from hashlib import sha256
 from models import User, Auth
 
+'''
+some_value + secret + random
+'''
 
 DB = "./users.json"
 
@@ -14,7 +17,7 @@ def create_user(data, json_file):
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
-    
+auth = Auth(DB)
 user = ""
 while user != "q":
     print("1. Crear usuario")
@@ -29,6 +32,19 @@ while user != "q":
     if user == "1":
         user_name = input("Name: ")
         user_pwd = input("PWD: ")
+        user_instance = User(user_name, user_pwd)  
+        auth.create_user(user_instance.user_dict)
+    
+    elif user == "2":
+        user_name = input("Name: ")
+        user_pwd = input("PWD: ")
         user_instance = User(user_name, user_pwd)
-        auth = Auth(user_instance, DB)
-        auth.create_user()
+        if auth.log_in(user_instance.user_dict):
+            print("Te has logueado")
+        else:
+            print("Mal")
+
+    elif user == "3":
+        print("Esto es secreto")
+
+
