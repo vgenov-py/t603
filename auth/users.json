@@ -1,3 +1,14 @@
 {
-    "data":[]
+    "data": [
+        {
+            "name": "kuga",
+            "pwd": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+            "token": "00f25542c7d61f6bf5bbbe6fdbeb99dc499a7e8788aa576b32b8ea1e3e7a85b7"
+        },
+        {
+            "name": "enrique",
+            "pwd": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+            "token": "a0200faff1882c6fe49c2d3d4d1ff3968c3d30d4043484b64f6dd9f2df073fea"
+        }
+    ]
 }
