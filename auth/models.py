@@ -1,5 +1,6 @@
 import json
 from hashlib import sha256
+from os import name
 from random import random
 
 SECRET = b"perro"
@@ -16,6 +17,21 @@ class User:
             "name": self.name,
             "pwd":self.pwd
         }
+
+class Admin(User):
+    def __init__(self, name, pwd):
+        super().__init__(name, pwd)
+        self.is_admin = True
+
+
+    def update_user(self, old_name, new_name, auth):
+        users = auth.users
+        for user in  users["data"]:
+            if user["name"] == old_name:
+                user["name"] = new_name
+                break
+        auth.write_data(users, auth.db)
+
 
 class Auth:
     def __init__(self, db):
@@ -40,6 +56,11 @@ class Auth:
     def get_user(self, user_name):
         return next(filter(lambda user: user["name"] == user_name, self.users["data"]), False)
 
+    def write_data(self, new_data, json_file):
+        data = open(json_file, "w", encoding="utf8")
+        json.dump(new_data, data, indent=4, ensure_ascii=False)
+        data.close()
+
 
     def log_in(self, user):
         i, db_user = next(filter(lambda db_user: db_user[1]["name"] == user["name"], enumerate(self.users["data"])), (None, False))
@@ -48,14 +69,10 @@ class Auth:
                 db_user["token"] = self.gen_token(db_user)
                 users = self.users
                 users["data"][i] = db_user
-                data = open(self.db, "w", encoding="utf8")
-                json.dump(users, data, indent=4, ensure_ascii=False)
-                data.close()
+                self.write_data(users, self.db)
                 cookies = self.cookies
                 cookies["token"] = {"name": db_user["name"], "token": db_user["token"]}
-                data = open("./cookies.json", "w", encoding="utf8")
-                json.dump(cookies, data, indent=4, ensure_ascii=False)
-                data.close()
+                self.write_data(cookies, "./cookies.json")
                 return True
             else:
                 return False
@@ -67,11 +84,6 @@ class Auth:
         users["data"].append(user)
         with open(self.db, "w",encoding="utf8") as file:
             json.dump(users, file, ensure_ascii=False, indent=4)
-
-    def o(f):
-        def i():
-            return f()
-        return i
 
     
     def authentication(self, f): # o
@@ -88,8 +100,10 @@ class Auth:
                 return False
         return inner()
 
-    
-
-
-
-
+    def is_admin(self, f):
+        def inner():
+            user_name, _ = self.cookies["token"].values()
+            db_user = self.get_user(user_name)
+            if db_user["is_admin"]:
+                return f()           
+        return inner

@@ -1,6 +1,6 @@
 import json
 from hashlib import sha256
-from models import User, Auth
+from models import User, Auth, Admin
 
 '''
 some_value + secret + random
@@ -31,7 +31,7 @@ def get_user():
 while user != "q":
     print("1. Crear usuario")
     print("2. Log in")
-    print("3. Restricted Area")
+    print("3. Modificar usuario")
 
     user = input("Choose: ")
 
@@ -49,6 +49,25 @@ while user != "q":
     elif user == "3":
         #@authentication 
         @auth.authentication
-        def restricted_menu():
-            print("Estás en una zona restringida")
+        @auth.is_admin   
+        def update_user():
+            for i, user in enumerate(auth.users["data"]):
+                print(f"{i + 1}: {user['name']}")
+            user = int(input(": ")) - 1
+            new_name = input("Nuevo nombre: ")
+            admin_instance = Admin("admin", "1234")
+            print("Está seguro de que quiere realizar los cambios?")
+            decision = input("(Y/N): ")
+            if decision.lower() == "y":
+                admin_instance.update_user(auth.users["data"][user]["name"], new_name, auth)
+                print("Cambios realizados con éxito")
+            else:
+                print("No se han realizado los cambios")
+
+    elif user == "4":
+        @auth.authentication
+        @auth.is_admin
+        def print_admin():
+            print("Eres admin")
+
 

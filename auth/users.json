@@ -1,14 +1,16 @@
 {
     "data": [
         {
-            "name": "kuga",
+            "name": "Enrique",
             "pwd": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
-            "token": "00f25542c7d61f6bf5bbbe6fdbeb99dc499a7e8788aa576b32b8ea1e3e7a85b7"
+            "token": "13f6919cf445786866a7a34e09446a8473336cbc69bdffcc5abf1be519e47996",
+            "is_admin": true
         },
         {
-            "name": "enrique",
+            "name": "Dannel",
             "pwd": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
-            "token": "a0200faff1882c6fe49c2d3d4d1ff3968c3d30d4043484b64f6dd9f2df073fea"
+            "token": "e01c564c43e447390cb663d6a9c85ceae10b3255409b3604962303457f57599b",
+            "is_admin": false
         }
     ]
 }
