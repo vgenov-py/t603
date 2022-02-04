@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="https://static.canva.com/static/images/favicon-1.ico">
+    <script src="{{url_for('static', filename='new.js')}}" defer></script>
+
+    <title>Nuevo collector</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark x_bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Honey</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/collectors">Collectors</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="http://127.0.0.1:5000/providers">Providers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/purchases">Purchases</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <main class="d-flex justify-content-center mt-5">
+        <div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre</label>
+              <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Your name">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="yourname@email.com">
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button class="btn x_bg-primary white" onclick="new_register_on_table()">Submit</button>
+        </div>
+      </main>
+</body>
+</html>

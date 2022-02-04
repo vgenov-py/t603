@@ -1,9 +1,10 @@
-from flask import Flask, g, render_template, request, Response
+from flask import Flask, g, request, Response
+from flask_cors import CORS
 import sqlite3
-
 
 from funcs import *
 app = Flask(__name__)
+CORS(app)
 DATABASE = "./honey.db"
 def con():
     db = getattr(g, '_database', None)
@@ -28,14 +29,18 @@ def get_tn(t_n):
     return Response(get_all(con, t_n), content_type="application/json")
     # return get_all(con, t_n)
 
-@app.route("/api/<t_n>/<id>")
+@app.route("/api/<t_n>/<id>", methods=["GET", "PUT", "POST"])
 def get_id_on_tn(t_n, id):
-    data = get_by_id(con, t_n, id)
-    if data:
-        return Response(data, content_type="application/json")
+    if request.method == "GET":
+        data = get_by_id(con, t_n, id)
+        if data:
+            return Response(data, content_type="application/json")
+        else:
+            return {"data": {"success": False}}
+    elif request.method == "PUT":
+        return "PUT"
     else:
-        return {"data": {"success": False}}
-
+        return "POST"
 
 # @app.route("/api/collectors", methods=["GET", "POST"])
 # def collectors():
