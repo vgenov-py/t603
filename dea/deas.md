@@ -4,6 +4,7 @@
 **BBDD** SQLite3</br>
 <a href="https://pypi.org/project/geopy/">**geopy**</a></br>
 * El API será privada y gestionará usuarios y DEAs
+* "CREATE TABLE users (id TEXT PRIMARY KEY UNIQUE, email TEXT UNIQUE, pwd TEXT, token TEXT);"
 
 ### Autenticar usuarios:
 1. Esquema de los usuarios: </br>
