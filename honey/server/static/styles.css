@@ -1,3 +1,22 @@
 .x_bg-primary {
     background-color: #e07a5f;
+    /* display: flex; */
+
+}
+
+.arancha {
+    display: flex; 
+    justify-content: end;
+    flex-direction: row;
+    align-items: center;
+}
+
+.x_button {
+    /* align-self: flex-end; */
+    justify-self: flex-end;
+    margin-left: 30%;
+}
+
+.white {
+    color: white;
 }
