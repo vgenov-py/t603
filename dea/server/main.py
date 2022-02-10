@@ -14,6 +14,7 @@ app = Flask(__name__)
 @app.route("/login")
 @auth.authenticate
 def login():
+    print(request.url)
     res = make_response(render_template("index.html"))
     return res
     
