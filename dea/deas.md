@@ -26,8 +26,8 @@
     * id TEXT</br>
     * name TEXT</br>
     * address TEXT</br>
-    * X REAL</br>
-    * Y REAL</br>
+    * X INT</br>
+    * Y INT</br>
 1. Una vez logueado el usuario, en la sección /find se listarán los 5 DEAs más a cercanos a su posición
 
 * window.navigator.geolocation.getCurrentPosition()
