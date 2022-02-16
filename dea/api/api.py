@@ -1,7 +1,8 @@
 from flask import Flask, request, g, make_response
 from flask_cors import CORS
 import sqlite3
-
+import utm
+import funcs
 
 
 app = Flask(__name__)
@@ -53,6 +54,25 @@ def token():
             return {"success": True}
 
     return {"success": False}
+
+@app.route("/api/finder")
+def api_finder():
+    user_lat, user_lon = request.args.values()
+    user_x, user_y, n, l = utm.from_latlon(float(user_lat), float(user_lon))
+    cur = con().cursor()
+    result = []
+    for dea in cur.execute("SELECT * FROM deas;"):
+        dea = dict(dea)
+        dea["distance"] = funcs.hypo(user_x, user_y, dea["x"], dea["y"])
+        
+        try:
+            dea_lat, dea_lon = utm.to_latlon(dea["x"], dea["y"],30, "T")
+            dea["latlon"] = f'''@{dea_lat},{dea_lon},20z'''
+            result.append(dea)
+        except:
+            pass
+    result.sort(key = lambda dea:dea["distance"])
+    return {"data": result[0:5]}
 
 
 @app.teardown_appcontext
