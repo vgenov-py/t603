@@ -66,8 +66,7 @@ def api_finder():
         dea["distance"] = funcs.hypo(user_x, user_y, dea["x"], dea["y"])
         
         try:
-            dea_lat, dea_lon = utm.to_latlon(dea["x"], dea["y"],30, "T")
-            dea["latlon"] = f'''@{dea_lat},{dea_lon},20z'''
+            dea["latlon"] = utm.to_latlon(dea["x"], dea["y"],30, "T")
             result.append(dea)
         except:
             pass
