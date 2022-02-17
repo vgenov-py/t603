@@ -71,7 +71,7 @@ def api_finder():
         except:
             pass
     result.sort(key = lambda dea:dea["distance"])
-    return {"data": result[0:5]}
+    return {"data": result[0:6]}
 
 
 @app.teardown_appcontext
