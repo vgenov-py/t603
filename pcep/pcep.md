@@ -11,6 +11,7 @@ https://pythoninstitute.org/certification/pcep-certification-entry-level/pcep-ex
 * id TEXT
 * email TEXT
 * pwd TEXT
+* token TEXT uuid4
 * grades TEXT (tuple grade)
 2. Estructura Questions
 * id TEXT
