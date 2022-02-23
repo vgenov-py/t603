@@ -8,16 +8,16 @@ https://pythoninstitute.org/certification/pcep-certification-entry-level/pcep-ex
 
 1. User Auth mediante session
 * Estructura User:
-* id TEXT
+* id TEXT uuid4
 * email TEXT
 * pwd TEXT
-* token TEXT uuid4
+* token TEXT
 * grades TEXT (tuple grade)
 2. Estructura Questions
-* id TEXT
+* id TEXT uuid4
 * Question TEXT
 * Answer TEXT
 3. Estructura Options
-* id TEXT
+* id TEXT uuid4
 * Option TEXT
 * Correct BOOL
