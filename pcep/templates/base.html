@@ -28,16 +28,22 @@
         </li>
       </ul>
     </nav>
-    <main>
+    <main> 
         {%block content%}
         {%endblock%}
     </main>
 
-    <label for="">En qué...</label>
-    <select name="option" id="">
-        <option value="id_o">1991</option>
-        <option value="id_o">1990</option>
-        <option value="id_o">2000</option>
-    </select>
+
+    <!-- TEST: -->
+    <form action="" method="POST">
+        <h1>{{questions[0].q}}</h1>
+
+            {%for option in questions[0].options%}
+            <div class="d-flex justify-content-center">
+                <p>{{option.o}}</p>
+                <input type="radio" value="{{option.id}}" name="{{questions[0].id}}">
+            </div>
+            {%endfor%}          
+    </form>
 </body>
 </html>
