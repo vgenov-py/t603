@@ -1,0 +1,15 @@
+{
+    "BLOCK_EXAMPLE": [
+    {
+        "question": "some q",
+        "options": [
+            "op1","op2 (CORRECTA)","op3"
+        ],
+        "answer": 0
+    }
+],
+  "1_Computer_Programming_and_Python_Fundamentals": [],
+  "2_Control_Flow_Conditional_Blocks_and_Loops": [],
+  "3_Data_Collections_Tuples_Dictionaries_Lists_and_Strings": [],
+  "4_Functions_and_Exceptions": []
+}
