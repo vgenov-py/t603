@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%block head%}
+<script src="{{url_for('static', filename='index.js')}}" defer></script>
+<script src="{{url_for('static', filename='styles.css')}}"></script>
+
+{%endblock%}
+{%block content%}
+<div  class="d-flex justify-content-center flex-column mt-3 mb-3" id="test">
+    <h3 class="text-center" id="grade"></h3>
+    {%for question in questions%}
+    <div>
+        <label for="{{question.id}}" class="mt-3" > <h5>{{question.q}}</h5></label>
+    
+        {%for option in question.options%}
+        <div class="options-container" class="mt-3">
+        <input type="radio" name="{{question.id}}" id="{{option.id}}" value="{{option.id}}" style="display: inline;">
+        <p style="display: inline;">{{option.o}}</p>
+        </div>
+        {%endfor%}    
+    </div>
+        {%endfor%}
+    <button onclick="grade_test()" class="btn btn-success mt-3 d-flex justify-content-center">Submit</button>    
+</div>
+{%endblock%}

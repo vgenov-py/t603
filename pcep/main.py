@@ -1,8 +1,11 @@
 from flask import Flask, make_response, session, request, render_template, Response
 from uuid import uuid4
 from hashlib import sha256
+
+from sqlalchemy import false
 from models import db, User, Question, Option
 import json
+from random import shuffle
 app = Flask(__name__)
 DB_URI = "multitest.db"
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_URI}"
@@ -12,13 +15,10 @@ db.init_app(app)
 
 @app.route("/", methods=["GET", "POST"])
 def query():
-    result = 0
     questions = Question.query.all()
-    # print(questions[2].a)
-    # print([option for option in questions[2].options if option.id == questions[2].a])
-    session["id"] = "session_cookie"
-    res = make_response(render_template("index.html", questions=questions))
-    res.set_cookie("id", "id_set_cookie")
+    shuffle(questions)
+    (shuffle(question.options) for question in questions[0:10])
+    res = make_response(render_template("test.html", questions=questions[0:10]))
     return res
 
 @app.route("/create")
@@ -36,18 +36,27 @@ def create_qs():
                     a = o_id
                 option = Option(id=o_id, o=option, question_id=q_id)
                 db.session.add(option)
-                print(f"OPTION: {option}")
+                
             question = Question(id=q_id, q=question["question"], a=a)
             db.session.add(question)
             # db.session.commit()
-
-            print(question)
     return "create"
 
-@app.route("/cookie", methods=["GET", "POST"])
+@app.route("/api/grade", methods=["GET", "POST"])
 def coo():
-    print(request.cookies)
-    return {"res":"cookie"}
+    if request.method == "POST":
+        q_a = Question.dict_q_a() # q_id q a "q_id": "q_a"
+        
+        answers = request.get_json()
+        result = {"grade": 0, "answers":{}}
+        for answer in answers:
+            result["answers"][answer[1]] = False
+            if q_a[answer[0]] == answer[1]:
+                result["grade"] += 1
+                result["answers"][answer[1]] = True
+
+            
+    return result
 
 
 
