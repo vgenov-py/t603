@@ -19,12 +19,12 @@ class Question(db.Model):
 
     options = db.relationship("Option", backref=db.backref("question", lazy=True))
 
-    # @property Igual a option de arriba
-    # def options(self):
-    #     return Option.query.filter_by(question_id=self.id).all()
+    @classmethod
+    def dict_q_a(cls):
+        return {question.id: question.a for question in cls.query.all()}
 
     def __repr__(self):
-       return f"{self.q}"
+        return f"id:{self.id} - q:{self.q} - a: {self.a}"
 
 class Option(db.Model):
     id = db.Column(db.String(32), primary_key=True)
@@ -32,4 +32,4 @@ class Option(db.Model):
     question_id = db.Column(db.String(32), ForeignKey("question.id"))
 
     def __repr__(self):
-       return f"{self.o}"
+        return f"id:{self.id} - q:{self.o} - a: {self.question_id}"
