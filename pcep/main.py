@@ -1,16 +1,40 @@
+import uuid
+from venv import create
 from flask import Flask, make_response, session, request, render_template, Response
 from uuid import uuid4
 from hashlib import sha256
 
-from sqlalchemy import false
-from models import db, User, Question, Option
+from models import db, User, Question, Option, Test, Test_question
 import json
 from random import shuffle
-app = Flask(__name__)
 DB_URI = "multitest.db"
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_URI}"
-app.config["SECRET_KEY"] = "secret"
-db.init_app(app)
+
+
+
+def create_app():
+    app = Flask(__name__)
+    app.config["SECRET_KEY"] = "secret"
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_URI}"
+    db.init_app(app)    
+    return app
+
+app = create_app()
+
+def set_db(app):
+    with app.app_context():
+        db.create_all()
+
+
+@app.route("/test_question")
+def test_question():
+    test = Test.query.first()
+    print(test.questions)
+    print(test.answers)
+    # new_test_question = Test_question(id=uuid4().hex, test_id="3441570236a94d3b8d7a7d9409ab6faa", question_id="7447ebc5f9c849459c1fff5f9c628ab4", user_choice="e25e44bb5add4d46ac99ad9556b0f3bd")
+    # db.session.add(new_test)
+    # db.session.commit()
+    return "TEST QUESTIONS"
+
 
 
 @app.route("/", methods=["GET", "POST"])
